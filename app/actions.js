@@ -1,13 +1,15 @@
 'use server'
 
-import { editLike, extractIds, getPostsData } from "@/lib/sheets"
+import { checkData, checkIds, editLike, extractIds, getPostsData } from "@/lib/sheets"
 import { syncPostData } from "@/lib/twitter"
 
 export async function getPosts() {
 
+  //await syncPostData()
 
+  //const data = await checkData()
 
-  await syncPostData()
+  //if(data > 0) return console.log('There`s data')
 
   const posts = await getPostsData()
 
@@ -23,7 +25,7 @@ export async function syncPosts() {
 
   if(!storedIds){
     console.log('Couldn`t find IDs. Extracting...')
-    await extractIds()
+    //await extractIds()
   }
 
   console.log('IDs in place. Pulling data...')

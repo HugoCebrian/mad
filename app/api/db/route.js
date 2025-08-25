@@ -1,21 +1,15 @@
-import Database from '@/lib/thesqlsheet/db'
-import { getPostsData, postIds } from '@/lib/sheets'
-
-const db = new Database({
-  db: process.env.GOOGLE_SHEET_ID,
-  table: 'Sheet1', // optional, default = Sheet1
-  clientEmail: process.env.GOOGLE_CLIENT_EMAIL,
-  privateKey: process.env.GOOGLE_PRIVATE_KEY,
-  cacheTimeoutMs: 5000, // optional, default = 5000
-})
-
-
+import { checkData, extractIds, getPostsData, postIds, storeData } from '@/lib/sheets'
+import { syncPostData } from '@/lib/twitter'
 
 export async function GET() {
-  
-  const data = await getPostsData()
 
-  console.log(data[3].thread[0].text)
+  //const data = await extractIds()
+
+  const data = storeData(true, '1957676693512143223', 'hey')
+  
+  //const data = await getPostsData()
+
+  //console.log(data[3].thread[0].text)
 
   /*
   await db.load();
