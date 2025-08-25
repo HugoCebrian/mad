@@ -1,5 +1,5 @@
 import Database from '@/lib/thesqlsheet/db'
-import { postIds } from '@/lib/sheets'
+import { getPostsData, postIds } from '@/lib/sheets'
 
 const db = new Database({
   db: process.env.GOOGLE_SHEET_ID,
@@ -12,22 +12,12 @@ const db = new Database({
 
 
 export async function GET() {
-  db.load()
+  
+  const data = await getPostsData()
 
-  let posts = await postIds()
+  console.log(data[3].thread[0].text)
 
-
-  let found = await db.findOneLike({ tweet: '1958471516258967653' })
-  console.log(found)
   /*
-  let docs = await db.insert([
-    {
-      name: 'test',
-      age: 10,
-    }
-  ])
-
-
   await db.load();
 
   // 1) insert
@@ -61,5 +51,5 @@ export async function GET() {
 
   //console.log(posts)
 
-  return Response.json({ res:'works?' })
+  return Response.json({ data })
 }
