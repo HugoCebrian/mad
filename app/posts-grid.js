@@ -232,13 +232,18 @@ export default function PostsGrid({ initialPosts }) {
 
       {/* Posts Layout */}
       <div className="px-4 sm:px-8">
-        <div className={`${layoutType === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'columns-1 sm:columns-2 lg:columns-3 xl:columns-4'} gap-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-t-3xl p-6 sm:p-8 max-w-7xl mx-auto`}>
+        <div className={`${layoutType === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'columns-1 sm:columns-2 lg:columns-3'} gap-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-t-3xl p-6 sm:p-8  mx-auto`}>
         {sorted.length === 0 ? (
           <div className="col-span-full text-center py-16">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
               <div className="text-6xl mb-4">🔍</div>
               <h3 className="text-xl font-semibold text-white mb-2">No posts found</h3>
-              <p className="text-gray-400">Try adjusting your filters to see more content</p>
+              <p className="text-gray-400">
+                {initialPosts.length === 0 
+                  ? "No data available. Check your environment configuration." 
+                  : "Try adjusting your filters to see more content"
+                }
+              </p>
             </div>
           </div>
         ) : (
@@ -314,7 +319,7 @@ export default function PostsGrid({ initialPosts }) {
 
                 {Array.isArray(post.thread) && post.thread.length > 0 ? (
                   <div className="mt-6 pl-6 border-l-2 border-gradient-to-b from-blue-400 to-purple-500">
-                    <div className="flex items-center gap-3 mb-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl px-4 py-3 sticky top-[80px] z-10 border border-blue-500/30">
+                    <div className="flex items-center gap-3 mb-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm rounded-xl px-4 py-3 top-[80px] z-10 border border-blue-500/30">
                       <span className="text-blue-400">💬</span>
                       <span className="font-semibold text-white">{post.thread.length} {post.thread.length === 1 ? 'Reply' : 'Replies'}</span>
                     </div>
