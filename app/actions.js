@@ -5,6 +5,8 @@ import { syncPostData } from "@/lib/twitter"
 
 export async function getPosts() {
 
+  //await extractIds()
+
   //await syncPostData()
 
   //const data = await checkData()
@@ -25,7 +27,7 @@ export async function syncPosts() {
 
   if(!storedIds){
     console.log('Couldn`t find IDs. Extracting...')
-    //await extractIds()
+    await extractIds()
   }
 
   console.log('IDs in place. Pulling data...')
