@@ -17,6 +17,7 @@ export async function getPosts() {
     //if(data > 0) return console.log('There`s data')
 
     const posts = await getPostsData()
+
     return posts
   } catch (error) {
     console.error('Error fetching posts:', error)
